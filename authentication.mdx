@@ -1,0 +1,93 @@
+---
+title: Authentication
+description: Learn how to authenticate and secure access to Cexch APIs
+---
+
+## Overview
+
+Authentication is crucial for securing access to Cexch's APIs and ensuring that only authorized users can interact with your project data. Cexch supports multiple authentication methods to suit different use cases.
+
+<Tabs>
+  <Tab title="API Keys" icon="key">
+    Use API keys for programmatic access to Cexch resources.
+  </Tab>
+  <Tab title="OAuth" icon="shield">
+    Implement OAuth 2.0 for secure user authentication.
+  </Tab>
+  <Tab title="JWT" icon="lock">
+    Utilize JSON Web Tokens for stateless authentication.
+  </Tab>
+</Tabs>
+
+## API Key Authentication
+
+<Callout kind="tip">Keep your API keys secure and never share them publicly.</Callout>
+
+<Steps>
+  <Step title="Generate Key" icon="key">
+    Create an API key from your Cexch dashboard.
+  </Step>
+  <Step title="Include in Headers" icon="settings">
+    Add the key to the `Authorization` header in your requests.
+  </Step>
+  <Step title="Test Connection" icon="check-circle">
+    Verify authentication by making a test API call.
+  </Step>
+</Steps>
+
+## OAuth 2.0 Flow
+
+<Expandable title="OAuth Implementation" default-open="false">
+  OAuth 2.0 provides a secure way to grant third-party applications access to your Cexch data without sharing credentials.
+</Expandable>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const response = await fetch('/oauth/authorize', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    client_id: 'your_client_id',
+    redirect_uri: 'https://yourapp.com/callback',
+  }),
+});
+```
+  ```python
+import requests
+
+response = requests.post('/oauth/authorize', json={
+    'client_id': 'your_client_id',
+    'redirect_uri': 'https://yourapp.com/callback',
+})
+```
+</CodeGroup>
+
+## JWT Tokens
+
+JWT tokens allow for stateless authentication across distributed systems.
+
+<ExpandableGroup>
+  <Expandable title="Token Structure" default-open="false">
+    JWT consists of three parts: header, payload, and signature.
+  </Expandable>
+  <Expandable title="Validation" default-open="false">
+    Always validate JWT tokens on the server side to ensure integrity.
+  </Expandable>
+</ExpandableGroup>
+
+## Security Best Practices
+
+- Rotate API keys regularly
+- Use HTTPS for all API communications
+- Implement rate limiting to prevent abuse
+- Store sensitive credentials securely
+
+<Callout kind="alert">Regularly review and revoke unused API keys to maintain security.</Callout>
+
+| Method | Use Case | Security Level |
+|--------|----------|----------------|
+| API Key | Simple integrations | Medium |
+| OAuth | User authorization | High |
+| JWT | Distributed systems | High |

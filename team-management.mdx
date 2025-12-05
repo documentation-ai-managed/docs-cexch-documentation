@@ -1,0 +1,106 @@
+---
+title: Team Management
+description: Build and manage your team in Cexch for effective collaboration
+---
+
+## Team Setup
+
+Effective team management is key to successful project execution. Cexch provides tools to invite members, assign roles, and foster collaboration.
+
+<Steps>
+  <Step title="Invite Members" icon="user-plus">
+    Send invitations to team members via email.
+  </Step>
+  <Step title="Assign Roles" icon="shield">
+    Set appropriate permissions for each member.
+  </Step>
+  <Step title="Create Groups" icon="users">
+    Organize members into functional groups.
+  </Step>
+  <Step title="Monitor Activity" icon="activity">
+    Track team productivity and engagement.
+  </Step>
+</Steps>
+
+## User Roles
+
+<Callout kind="info">Choose the right roles to maintain security and efficiency.</Callout>
+
+<Tabs>
+  <Tab title="Admin" icon="crown">
+    Full access to all features and settings.
+  </Tab>
+  <Tab title="Manager" icon="user-check">
+    Project management and team oversight.
+  </Tab>
+  <Tab title="Member" icon="user">
+    Standard access to assigned projects.
+  </Tab>
+  <Tab title="Viewer" icon="eye">
+    Read-only access to projects.
+  </Tab>
+</Tabs>
+
+## Team Communication
+
+<Expandable title="Built-in Chat" default-open="false">
+  Use Cexch's integrated chat for quick team communication.
+</Expandable>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const teamMember = {
+  email: 'member@example.com',
+  role: 'member',
+  projects: ['project1', 'project2'],
+};
+
+const response = await fetch('/api/team/invite', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your_token',
+  },
+  body: JSON.stringify(teamMember),
+});
+```
+  ```python
+import requests
+
+team_member = {
+    'email': 'member@example.com',
+    'role': 'member',
+    'projects': ['project1', 'project2'],
+}
+
+response = requests.post('/api/team/invite', json=team_member, headers={
+    'Authorization': 'Bearer your_token',
+})
+```
+</CodeGroup>
+
+## Team Analytics
+
+| Metric | Description | Insight |
+|--------|-------------|---------|
+| Task Completion | Percentage of completed tasks | Productivity measure |
+| Time to Resolution | Average time to close tasks | Efficiency indicator |
+| Member Activity | Engagement levels | Team health |
+
+<ExpandableGroup>
+  <Expandable title="Performance Reports" default-open="false">
+    Generate detailed reports on team performance.
+  </Expandable>
+  <Expandable title="Workload Balancing" default-open="false">
+    Ensure even distribution of tasks among team members.
+  </Expandable>
+</ExpandableGroup>
+
+<Columns cols={2}>
+  <Card title="Resource Allocation" icon="bar-chart" href="#" horizontal>
+    Optimize team resource usage.
+  </Card>
+  <Card title="Training" icon="graduation-cap" href="#" horizontal>
+    Provide training and onboarding.
+  </Card>
+</Columns>

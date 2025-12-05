@@ -1,0 +1,108 @@
+---
+title: Tasks
+description: Manage and track individual tasks within your Cexch projects
+---
+
+## Task Management
+
+Tasks are the building blocks of your projects in Cexch. Learn how to create, assign, and track tasks to ensure project success.
+
+<Steps>
+  <Step title="Create Task" icon="plus">
+    Add a new task to a project.
+  </Step>
+  <Step title="Assign Members" icon="user-plus">
+    Assign team members to tasks.
+  </Step>
+  <Step title="Set Deadlines" icon="calendar">
+    Establish due dates and priorities.
+  </Step>
+  <Step title="Track Progress" icon="bar-chart">
+    Monitor task completion and updates.
+  </Step>
+</Steps>
+
+## Task Types
+
+<Callout kind="tip">Use different task types to categorize your work effectively.</Callout>
+
+<Tabs>
+  <Tab title="Bug" icon="alert-circle">
+    Report and track software bugs.
+  </Tab>
+  <Tab title="Feature" icon="star">
+    Implement new features.
+  </Tab>
+  <Tab title="Task" icon="check-square">
+    General work items.
+  </Tab>
+</Tabs>
+
+## Task Dependencies
+
+<Expandable title="Managing Dependencies" default-open="false">
+  Set up task dependencies to ensure proper workflow sequencing.
+</Expandable>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const task = {
+  title: 'Implement feature',
+  description: 'Add new functionality',
+  assignee: 'user@example.com',
+  due_date: '2024-12-31',
+  priority: 'high',
+};
+
+const response = await fetch('/api/tasks', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your_token',
+  },
+  body: JSON.stringify(task),
+});
+```
+  ```python
+import requests
+
+task = {
+    'title': 'Implement feature',
+    'description': 'Add new functionality',
+    'assignee': 'user@example.com',
+    'due_date': '2024-12-31',
+    'priority': 'high',
+}
+
+response = requests.post('/api/tasks', json=task, headers={
+    'Authorization': 'Bearer your_token',
+})
+```
+</CodeGroup>
+
+## Task Views
+
+| View | Description | Use Case |
+|------|-------------|----------|
+| List | Simple task list | Quick overview |
+| Board | Kanban-style board | Visual tracking |
+| Calendar | Timeline view | Deadline management |
+| Gantt | Project timeline | Complex dependencies |
+
+<ExpandableGroup>
+  <Expandable title="Task Comments" default-open="false">
+    Add comments to tasks for better communication.
+  </Expandable>
+  <Expandable title="File Attachments" default-open="false">
+    Attach files and documents to tasks.
+  </Expandable>
+</ExpandableGroup>
+
+<Columns cols={2}>
+  <Card title="Time Tracking" icon="clock" href="#" horizontal>
+    Track time spent on tasks.
+  </Card>
+  <Card title="Notifications" icon="bell" href="#" horizontal>
+    Get updates on task changes.
+  </Card>
+</Columns>

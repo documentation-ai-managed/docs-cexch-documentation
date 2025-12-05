@@ -1,0 +1,188 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Cexch Project Management API
+  license:
+    name: MIT
+servers:
+  - url: https://api.cexch.com/v1
+paths:
+  /projects:
+    get:
+      summary: Retrieve a list of all projects accessible to the authenticated user. This endpoint supports pagination and filtering by status, allowing users to efficiently browse their project portfolio. Results include project metadata such as creation dates, team sizes, and completion percentages for comprehensive overview.
+      operationId: listProjects
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of projects to return per page, capped at 100 for optimal performance
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Successful retrieval of projects list with pagination metadata
+          headers:
+            x-next:
+              description: URL for the next page of results if more projects exist
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        default:
+          description: Error response for failed project retrieval attempts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new project with specified details and team assignments. This endpoint initializes a project structure, sets up initial permissions, and prepares the workspace for task management. The operation validates input data and ensures the creating user has appropriate permissions.
+      operationId: createProjects
+      responses:
+        201:
+          description: Project successfully created with unique identifier returned
+        default:
+          description: Error response when project creation fails due to validation or permission issues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /projects/{projectId}:
+    get:
+      summary: Fetch detailed information about a specific project including tasks, team members, and current status. This endpoint provides comprehensive project data for dashboard displays and detailed project management views. Access is restricted to authorized team members.
+      operationId: showProjectById
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: Unique identifier of the project to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed project information successfully retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Projects'
+        default:
+          description: Error response for invalid project ID or access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /tasks:
+    get:
+      summary: Retrieve tasks across all accessible projects with filtering and sorting capabilities. This endpoint supports advanced query parameters for finding tasks by assignee, status, priority, and due dates. Results include task metadata and relationships for efficient project tracking.
+      operationId: listTasks
+      parameters:
+        - name: project_id
+          in: query
+          description: Filter tasks by specific project identifier
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful retrieval of tasks with applied filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tasks'
+        default:
+          description: Error response for task listing failures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new task within an existing project with specified details and assignments. This endpoint validates project access, sets up task relationships, and notifies relevant team members. The operation ensures proper task initialization and permission checks.
+      operationId: createTasks
+      responses:
+        201:
+          description: Task successfully created with unique identifier
+        default:
+          description: Error response when task creation fails
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users:
+    get:
+      summary: List team members and their roles within accessible projects. This endpoint provides user information for team management, including permissions, activity status, and project associations. Results help administrators understand team composition and access levels.
+      operationId: listUsers
+      responses:
+        200:
+          description: Successful retrieval of user information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        default:
+          description: Error response for user listing failures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Project:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          type: string
+    Projects:
+      type: array
+      items:
+        $ref: '#/components/schemas/Project'
+    Task:
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        status:
+          type: string
+    Tasks:
+      type: array
+      items:
+        $ref: '#/components/schemas/Task'
+    User:
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: integer
+          format: int64
+        email:
+          type: string
+        role:
+          type: string
+    Users:
+      type: array
+      items:
+        $ref: '#/components/schemas/User'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

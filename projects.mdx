@@ -1,0 +1,95 @@
+---
+title: Projects
+description: Create and manage projects in Cexch for organized task tracking
+---
+
+## Creating Projects
+
+Projects in Cexch serve as containers for organizing related tasks and team members. Start by creating a new project to begin managing your work effectively.
+
+<Steps>
+  <Step title="Access Dashboard" icon="home">
+    Log in to your Cexch account and navigate to the dashboard.
+  </Step>
+  <Step title="Create Project" icon="plus">
+    Click the "New Project" button and enter project details.
+  </Step>
+  <Step title="Set Permissions" icon="settings">
+    Configure team access and project settings.
+  </Step>
+  <Step title="Add Tasks" icon="check-square">
+    Begin adding tasks to your new project.
+  </Step>
+</Steps>
+
+## Project Settings
+
+<Callout kind="info">Customize your project settings to match your team's workflow.</Callout>
+
+<Expandable title="Advanced Settings" default-open="false">
+  Configure deadlines, priorities, and custom fields for your projects.
+</Expandable>
+
+<Tabs>
+  <Tab title="Basic" icon="settings">
+    Set project name, description, and basic preferences.
+  </Tab>
+  <Tab title="Team" icon="users">
+    Manage team members and their roles.
+  </Tab>
+  <Tab title="Integrations" icon="link">
+    Connect with external tools and services.
+  </Tab>
+</Tabs>
+
+## Project Templates
+
+<Columns cols={2}>
+  <Card title="Agile Sprint" icon="zap" href="#" horizontal>
+    Template for agile development sprints.
+  </Card>
+  <Card title="Marketing Campaign" icon="megaphone" href="#" horizontal>
+    Organize marketing initiatives.
+  </Card>
+</Columns>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const project = {
+  name: 'New Project',
+  description: 'Project description',
+  team: ['user1', 'user2'],
+};
+
+const response = await fetch('/api/projects', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer your_token',
+  },
+  body: JSON.stringify(project),
+});
+```
+  ```python
+import requests
+
+project = {
+    'name': 'New Project',
+    'description': 'Project description',
+    'team': ['user1', 'user2'],
+}
+
+response = requests.post('/api/projects', json=project, headers={
+    'Authorization': 'Bearer your_token',
+})
+```
+</CodeGroup>
+
+<ExpandableGroup>
+  <Expandable title="Project Limits" default-open="false">
+    Free accounts have project limits; upgrade for unlimited access.
+  </Expandable>
+  <Expandable title="Archiving Projects" default-open="false">
+    Archive completed projects to keep your workspace clean.
+  </Expandable>
+</ExpandableGroup>

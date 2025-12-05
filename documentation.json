@@ -1,0 +1,79 @@
+{
+  "name": "Cexch Documentation",
+  "initialRoute": "introduction",
+  "primaryColor": "#3B82F6",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "icon": "book",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "introduction",
+                "icon": "star"
+              }
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "icon": "lightbulb",
+            "pages": [
+              {
+                "title": "Authentication",
+                "path": "authentication",
+                "icon": "key"
+              },
+              {
+                "title": "Projects",
+                "path": "projects",
+                "icon": "folder"
+              }
+            ]
+          },
+          {
+            "group": "Advanced",
+            "icon": "zap",
+            "pages": [
+              {
+                "title": "Tasks",
+                "path": "tasks",
+                "icon": "check-square"
+              },
+              {
+                "title": "Team Management",
+                "path": "team-management",
+                "icon": "users"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Endpoints",
+            "openapi": "openapi.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock",
+        "pages": [
+          {
+            "title": "Release History",
+            "path": "changelog",
+            "icon": "history"
+          }
+        ]
+      }
+    ]
+  }
+}
